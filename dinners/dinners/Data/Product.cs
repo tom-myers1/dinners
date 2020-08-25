@@ -70,6 +70,6 @@ namespace dinners.Data
         public int Id { get; set; }
         public string Title { get; set; }
         public int Servings { get; set; }
-        public string ServingUnit { get; set; }
+        public string ServingsUnit { get; set; }
     }
 }

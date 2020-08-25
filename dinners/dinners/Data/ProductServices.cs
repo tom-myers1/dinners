@@ -24,43 +24,43 @@ namespace dinners.Data
         /// This method returns the list of product
         /// </summary>
         /// <returns></returns>
-        public async Task<List<Product>> GetProductAsync()
+        public async Task<List<Recipes>> GetRecipesAsync()
         {
-            return await dbContext.Product.ToListAsync();
+            return await dbContext.Recipes.ToListAsync();
         }
 
         /// <summary>
         /// This method add a new product to the DbContext and saves it
         /// </summary>
-        /// <param name="product"></param>
+        /// <param name="recipe"></param>
         /// <returns></returns>
-        public async Task<Product> AddProductAsync(Product product)
+        public async Task<Recipes> AddRecipesAsync(Recipes recipe)
         {
             try
             {
-                dbContext.Product.Add(product);
+                dbContext.Recipes.Add(recipe);
                 await dbContext.SaveChangesAsync();
             }
             catch (Exception)
             {
                 throw;
             }
-            return product;
+            return recipe;
         }
 
         /// <summary>
         /// This method update and existing product and saves the changes
         /// </summary>
-        /// <param name="product"></param>
+        /// <param name="recipe"></param>
         /// <returns></returns>
-        public async Task<Product> UpdateProductAsync(Product product)
+        public async Task<Recipes> UpdateRecipesAsync(Recipes recipe)
         {
             try
             {
-                var productExist = dbContext.Product.FirstOrDefault(p => p.Id == product.Id);
+                var productExist = dbContext.Recipes.FirstOrDefault(p => p.Id == recipe.Id);
                 if (productExist != null)
                 {
-                    dbContext.Update(product);
+                    dbContext.Update(recipe);
                     await dbContext.SaveChangesAsync();
                 }
             }
@@ -68,19 +68,19 @@ namespace dinners.Data
             {
                 throw;
             }
-            return product;
+            return recipe;
         }
 
         /// <summary>
         /// This method removes and existing product from the DbContext and saves it
         /// </summary>
-        /// <param name="product"></param>
+        /// <param name="recipe"></param>
         /// <returns></returns>
-        public async Task DeleteProductAsync(Product product)
+        public async Task DeleteRecipesAsync(Recipes recipe)
         {
             try
             {
-                dbContext.Product.Remove(product);
+                dbContext.Recipes.Remove(recipe);
                 await dbContext.SaveChangesAsync();
             }
             catch (Exception)

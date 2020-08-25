@@ -10,30 +10,26 @@
                 <tr>
                     <th>Recipe ID</th>
                     <th>Title</th>
-                    <th>Ingredients</th>
-                    <th>Quantity</th>
-                    <th>Description</th>
-                    <th>Delete Product</th>
+                    <th>Servings</th>
+                    <th>Delete Recipe</th>
                 </tr>
             </thead>
             <tbody>
-                @if (Products.Any())
+                @if (Recipes.Any())
                 {
-                    @foreach (var product in Products)
+                    @foreach (var recipe in Recipes)
                     {
-                        <tr @onclick="(() => SetProductForUpdate(product))">
-                            <td>@product.Id</td>
-                            <td>@product.Name</td>
-                            <td>@product.Price</td>
-                            <td>@product.Quantity</td>
-                            <td>@product.Description</td>
-                            <td><button class="btn btn-danger" @onclick="(() => DeleteProduct(product))">Delete</button></td>
+                        <tr @onclick="(() => SetRecipesForUpdate(recipe))">
+                            <td>@recipe.Id</td>
+                            <td>@recipe.Title</td>
+                            <td>@recipe.Servings</td>
+                            <td><button class="btn btn-danger" @onclick="(() => DeleteRecipes(recipe))">Delete</button></td>
                         </tr>
                     }
                 }
                 else
                 {
-                    <tr><td colspan="6"><strong>No products available</strong></td></tr>
+                    <tr><td colspan="6"><strong>No recipes available</strong></td></tr>
                 }
             </tbody>
         </table>
@@ -42,61 +38,52 @@
     <div class="row m-5">
         <div class="col-5 bg-light m-2 justify-content-start">
 
-            <div class="p-3 mb-3 bg-primary text-white text-center">Add New Product</div>
+            <div class="p-3 mb-3 bg-primary text-white text-center">Add New Recipe</div>
 
-            <EditForm Model="@NewProduct">
+            <EditForm Model="@NewRecipes">
                 <div class="form-group">
-                    <label for="name">Product Name</label>
-                    <input type="text" id="name" class="form-control" @bind-value="@NewProduct.Name" />
+                    <label for="title">Recipe Title</label>
+                    <input type="text" id="title" class="form-control" @bind-value="@NewRecipes.Title" />
                 </div>
 
                 <div class="form-group">
-                    <label for="price">Price</label>
-                    <input type="text" id="price" class="form-control" @bind="@NewProduct.Price" />
+                    <label for="serving">serving</label>
+                    <input type="number" id="serving" class="form-control" @bind="@NewRecipes.Servings" />
                 </div>
 
                 <div class="form-group">
-                    <label for="quantity">Quantity</label>
-                    <input type="text" id="quantity" class="form-control" @bind="@NewProduct.Quantity" />
+                    <label for="servngunit">servingunit</label>
+                    <input type="text" id="serving unit" class="form-control" @bind="@NewRecipes.ServingsUnit" />
                 </div>
 
-                <div class="form-group">
-                    <label for="Description">Description</label>
-                    <input type="text" id="Description" class="form-control" @bind="@NewProduct.Description" />
-                </div>
 
                 <div class="text-center p-3 mb-3">
-                    <button class="btn btn-info" @onclick="AddNewProduct"> Add Product</button>
+                    <button class="btn btn-info" @onclick="AddNewRecipes"> Add Recipe</button>
                 </div>
             </EditForm>
         </div>
 
         <div class="col-5 bg-light m-2 justify-content-end">
-            <div class="p-3 mb-1 bg-primary text-white text-center">Update Product</div>
+            <div class="p-3 mb-1 bg-primary text-white text-center">Update Recipe</div>
 
-            <EditForm Model="@UpdateProduct">
+            <EditForm Model="@UpdateRecipes">
                 <div class="form-group">
-                    <label for="name">Product Name</label>
-                    <input type="text" id="name" class="form-control" @bind-value="@UpdateProduct.Name" />
+                    <label for="title">Recipe Title</label>
+                    <input type="text" id="title" class="form-control" @bind-value="@NewRecipes.Title" />
                 </div>
 
                 <div class="form-group">
-                    <label for="price">Price</label>
-                    <input type="text" id="price" class="form-control" @bind="@UpdateProduct.Price" />
+                    <label for="serving">serving</label>
+                    <input type="number" id="serving" class="form-control" @bind="@NewRecipes.Servings" />
                 </div>
 
                 <div class="form-group">
-                    <label for="quantity">Quantity</label>
-                    <input type="text" id="quantity" class="form-control" @bind="@UpdateProduct.Quantity" />
-                </div>
-
-                <div class="form-group">
-                    <label for="Description">Description</label>
-                    <input type="text" id="Description" class="form-control" @bind="@UpdateProduct.Description" />
+                    <label for="servngunit">servingunit</label>
+                    <input type="text" id="serving unit" class="form-control" @bind="@NewRecipes.ServingsUnit" />
                 </div>
 
                 <div class="text-center p-3 mb-3">
-                    <button class="btn btn-info" @onclick="UpdateProductData"> Update Product</button>
+                    <button class="btn btn-info" @onclick="UpdateRecipesData"> Update Recipe</button>
                 </div>
             </EditForm>
         </div>
@@ -105,40 +92,40 @@
 
 @code {
 
-    List<Product> Products = new List<Product>();
+    List<Recipes> Recipes = new List<Recipes>();
     protected override async Task OnInitializedAsync()
     {
-        await RefreshProducts();
+        await RefreshRecipes();
     }
 
-    private async Task RefreshProducts()
+    private async Task RefreshRecipes()
     {
-        Products = await service.GetProductAsync();
+        Recipes = await service.GetRecipesAsync();
     }
 
-    public Product NewProduct { get; set; } = new Product();
-    private async Task AddNewProduct()
+    public Recipes NewRecipes { get; set; } = new Recipes();
+    private async Task AddNewRecipes()
     {
-        await service.AddProductAsync(NewProduct);
-        NewProduct = new Product();
-        await RefreshProducts();
+        await service.AddRecipesAsync(NewRecipes);
+        NewRecipes = new Recipes();
+        await RefreshRecipes();
     }
 
-    Product UpdateProduct = new Product();
-    private void SetProductForUpdate(Product product)
+    Recipes UpdateRecipes = new Recipes();
+    private void SetRecipesForUpdate(Recipes recipes)
     {
-        UpdateProduct = product;
+        UpdateRecipes = recipes;
     }
 
-    private async Task UpdateProductData()
+    private async Task UpdateRecipesData()
     {
-        await service.UpdateProductAsync(UpdateProduct);
-        await RefreshProducts();
+        await service.UpdateRecipesAsync(UpdateRecipes);
+        await RefreshRecipes();
     }
 
-    private async Task DeleteProduct(Product product)
+    private async Task DeleteRecipes(Recipes recipes)
     {
-        await service.DeleteProductAsync(product);
-        await RefreshProducts();
+        await service.DeleteRecipesAsync(recipes);
+        await RefreshRecipes();
     }
 }
