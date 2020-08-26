@@ -50,3 +50,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# obj/debug folder ignore
+dinners/dinners/obj/Debug/
