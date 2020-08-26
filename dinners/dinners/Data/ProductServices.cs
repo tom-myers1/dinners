@@ -21,9 +21,14 @@ namespace dinners.Data
 
         #region Public methods
         /// <summary>
-        /// This method returns the list of product
+        /// This method returns the list of ingredients
         /// </summary>
-        /// <returns></returns>
+
+        public async Task<List<Ingredients>> GetIngredientsAsync()
+        {
+            return await dbContext.Ingredients.ToListAsync();
+        }
+
         public async Task<List<Recipes>> GetRecipesAsync()
         {
             return await dbContext.Recipes.ToListAsync();

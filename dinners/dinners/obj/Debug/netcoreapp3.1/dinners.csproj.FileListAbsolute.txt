@@ -88,3 +88,5 @@ C:\repos\personal\dinners\dinners\dinners\obj\Debug\netcoreapp3.1\Razor\Shared\M
 C:\repos\personal\dinners\dinners\dinners\obj\Debug\netcoreapp3.1\Razor\Shared\NavMenu.razor.g.cs
 C:\repos\personal\dinners\dinners\dinners\obj\Debug\netcoreapp3.1\Razor\Shared\SurveyPrompt.razor.g.cs
 C:\repos\personal\dinners\dinners\dinners\obj\Debug\netcoreapp3.1\Razor\_Imports.razor.g.cs
+C:\repos\personal\dinners\dinners\dinners\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\RecipesPage.razor.g.cs
+C:\repos\personal\dinners\dinners\dinners\obj\Debug\netcoreapp3.1\Razor\Pages\RecipesPage.razor.g.cs

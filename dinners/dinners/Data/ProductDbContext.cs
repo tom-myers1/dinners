@@ -18,6 +18,8 @@ namespace dinners.Data
 
         #region Public properties
         public DbSet<Recipes> Recipes { get; set; }
+
+        public DbSet<Ingredients> Ingredients { get; set; }
         #endregion
 
         #region Overidden methods

@@ -53,3 +53,11 @@ dkms.conf
 
 # obj/debug folder ignore
 dinners/dinners/obj/Debug/
+.vs/
+bin/
+obj/
+*.user
+artifacts/
+.vscode/
+.dotnet/
+*.binlog
